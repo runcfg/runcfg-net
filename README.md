@@ -12,7 +12,7 @@ $  dotnet add package Runcfg --version 1.0.0
 1. Create an account at https://runcfg.com
 2. Download your .runcfg file from your project page at https://runcfg.com by clicking (get .runcfg file)
 
-![runcfg.PNG](runcfg.PNG)
+![](https://raw.githubusercontent.com/runcfg/runcfg-net/main/runcfg.png)
 
 3. Place your .runcfg file at the root of your project
 4. Create an instance of the client in your code as follows:
