@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Runcfg-NET", "Runcfg-NET\Runcfg-NET.csproj", "{A4EB4F00-C184-408C-BB3A-84C526505CFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Runcfg-NET.Test", "Runcfg-NET.Test\Runcfg-NET.Test.csproj", "{D244B42B-707A-4A7E-A681-29B9392BAE80}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A4EB4F00-C184-408C-BB3A-84C526505CFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4EB4F00-C184-408C-BB3A-84C526505CFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4EB4F00-C184-408C-BB3A-84C526505CFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4EB4F00-C184-408C-BB3A-84C526505CFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D244B42B-707A-4A7E-A681-29B9392BAE80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D244B42B-707A-4A7E-A681-29B9392BAE80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D244B42B-707A-4A7E-A681-29B9392BAE80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D244B42B-707A-4A7E-A681-29B9392BAE80}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
