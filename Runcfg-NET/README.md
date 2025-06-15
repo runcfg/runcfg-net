@@ -4,7 +4,7 @@
 
 First download dependency using nuget
 ```shell
-$  dotnet add package Runcfg --version 1.0.0
+$  dotnet add package Runcfg --version 1.1.0
 ```
 
 ### Using your first config
