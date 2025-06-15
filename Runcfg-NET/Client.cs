@@ -19,7 +19,7 @@ public sealed class Client
     
     /// <summary>
     ///     Path to [project].runcfg file
-    ///     Defaults to Current Working Direction + ./runcfg
+    ///     Defaults to `Directory.GetCurrentDirectory() + ./runcfg`
     /// </summary>
     /// <param name="path">Path to [project].runcfg file</param>
     public Client(string path = "")
@@ -32,6 +32,13 @@ public sealed class Client
         };
     }
 
+    /// <summary>
+    ///     Load your remote configuration using the
+    ///     current client.
+    /// </summary>
+    /// <typeparam name="T">Type that matches your remote config</typeparam>
+    /// <returns>nullable type</returns>
+    /// <exception cref="Exception">Failure to load config to type T</exception>
     public async Task<T?> Load<T>()
     {
         _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", $"{_clientConfig.ClientToken}");        
