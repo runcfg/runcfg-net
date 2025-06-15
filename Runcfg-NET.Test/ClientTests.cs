@@ -25,4 +25,13 @@ public class ClientTests
         var config = await client.Load<TestConfig>();
         Assert.Equal("1", config.Version);
     }
+
+    [Fact]
+    public async void CreateClientTest_WithCustomPath()
+    {
+        const string path = "./my-config.runcfg";
+        var client = new Client(path);
+        var config = await client.Load<TestConfig>();
+        Assert.Equal("1", config.Version);
+    }
 }

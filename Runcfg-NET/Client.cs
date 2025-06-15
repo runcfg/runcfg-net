@@ -14,25 +14,37 @@ struct ClientConfig
 
 public sealed class Client
 {
-    ClientConfig ClientConfig { get; set; }
-    HttpClient _httpClient;
+    private readonly ClientConfig _clientConfig;
+    private readonly HttpClient _httpClient;
     
-    public Client()
+    /// <summary>
+    ///     Path to [project].runcfg file
+    ///     Defaults to Current Working Direction + ./runcfg
+    /// </summary>
+    /// <param name="path">Path to [project].runcfg file</param>
+    public Client(string path = "")
     {
-        var file = File.ReadAllText(Directory.GetCurrentDirectory() + "/.runcfg");
-        ClientConfig = JsonSerializer.Deserialize<ClientConfig>(file);
+        var file = File.ReadAllText(path != string.Empty ? path : Directory.GetCurrentDirectory() + "/.runcfg");
+        _clientConfig = JsonSerializer.Deserialize<ClientConfig>(file);
         _httpClient = new HttpClient()
         {
             BaseAddress = new Uri("https://runcfg.com")
         };
     }
 
-    public async Task<T> Load<T>()
+    public async Task<T?> Load<T>()
     {
-        _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", $"{ClientConfig.ClientToken}");        
-        var request = _httpClient.Send(new HttpRequestMessage(HttpMethod.Get, $"/app/project/{ClientConfig.ProjectId}/view"));
+        _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", $"{_clientConfig.ClientToken}");        
+        var request = _httpClient.Send(new HttpRequestMessage(HttpMethod.Get, $"/app/project/{_clientConfig.ProjectId}/view"));
         var content = (await request.Content.ReadAsStringAsync()).TrimStart('"').TrimEnd('"').Replace("\\", string.Empty);
-        var instance = JsonSerializer.Deserialize<T>(content);
-        return instance;
+        try
+        {
+            var instance = JsonSerializer.Deserialize<T>(content);
+            return instance;
+        } 
+        catch (Exception ex) when (ex is ArgumentNullException or JsonException or NotSupportedException)
+        {
+            throw new Exception($"Failed to deserialize runcfg content for project: {_clientConfig.ProjectId}, reason: {ex.Message}");
+        }
     }
 }
